@@ -2,45 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function index(){
-
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
     $tags = Tag::all();
 
     return view("tags/index", ["tags" => $tags]);
-
     }
 
-    function create(){
-        Tag::create([
-            "title" => "Software engineering"
-        ]);
-        return redirect("/tags");
-
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
-    function show($id){
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
         $tag = Tag::findOrFail($id);
         return view("tags/show", ["tag" => $tag]);
     }
 
-    function Post_tags(){
-        $post1 = Post::find(2);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-        $post2 = Post::find(3);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-        $post1->tags()->attach([1,2]);
-        $post2->tags()->attach([1,2]);
-
-        return response()->json([
-            "message" => "Tags attached to posts successfully",
-            '$post1' => $post1->tags,
-            '$post2' => $post2->tags
-        ]);
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

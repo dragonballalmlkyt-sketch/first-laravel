@@ -2,43 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class BlogController extends Controller
 {
-    //
-    function index(){
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $posts = Post::paginate(5);
 
-    $posts = Post::paginate(5);
-
-    return view("BLOG/index", ["posts" => $posts]);
-
-    }
-
-    function create(){
-        // Post::create([
-        //     "title" => "New unique Post",
-        //     "content" => "This is a new post.",
-        //     "author" => "Admin"
-        // ]);
-        Post::factory(100)->create();
-        return redirect("/blog");
+        return view("BLOG/index", ["posts" => $posts]);
 
     }
 
-    function delete(){
-        $post = Post::find(1);
-        $post->comments()->delete();
-        $post->delete();
-        return redirect("/blog");
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
-    function show($id){
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
         $post = Post::findOrFail($id);
         return view("BLOG/show", ["post" => $post]);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

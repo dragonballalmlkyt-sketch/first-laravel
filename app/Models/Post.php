@@ -28,7 +28,6 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'published_at',
         'author',
     ]; // Allow mass assignment for these fields
 
